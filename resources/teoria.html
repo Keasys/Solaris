@@ -126,16 +126,16 @@
     </div>
   </div>
   <div id="titlepanel" class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark">
-    <div id="mainpanel" class="col-md-5 p-lg-5 mx-auto my-5" style="position:relative">
+    <div id="mainpanel" class="col-md-8 p-lg-5 mx-auto my-5" style="position:relative">
      <div id="outline-container-org5c8eee5" class="outline-2">
-       <h2 id="org5c8eee5">Introduzione</h2>
+       <h2 class="paragtitle"id="org5c8eee5">Introduzione</h2>
        <div class="outline-text-2" id="text-1">
 	 <p>
 	   Il Perlin Noise è un procedimento usato per la generazioni di textures o superfici procedurali, nello specifico si
-	   tratta di un procedimento che rientra tra quelli chiamati <b>"gradient noise"</b>, utilizzato da artisti per crear
-	   e textures realisticamente convincenti.
-	   Esistono vari algoritmi che utilizzano il gradient noise per produrre delle textures o superfici. In generale tutt
-	   i questi hanno in comune una serie di operazioni (<a class='org-ref-reference' href="#ebert2014texturing">ebert2014texturing</a>).
+	   tratta di un procedimento che rientra tra quelli chiamati <b>"gradient noise"</b>, utilizzato da artisti per creare
+	   textures realisticamente convincenti.
+	   Esistono vari algoritmi che utilizzano il gradient noise per produrre delle textures o superfici. In generale tutti
+	   questi hanno in comune una serie di operazioni (<a class='org-ref-reference' href="#ebert2014texturing">ebert2014texturing</a>).
 	 </p>
 
 	 <ol class="org-ol">
@@ -151,9 +151,10 @@
 	   dall'omonimo Ken Perlin nel 1983 (<a class='org-ref-reference' href="#perlin:1985:IS">perlin:1985:IS</a>).
 	 </p>
        </div>
-       <div id="outline-container-org2e7f50a" class="outline-2">
-	 <h2 id="org2e7f50a">Definizione Della Griglia</h2>
-	 <div class="outline-text-2" id="text-2">
+     </div>
+     <div id="outline-container-org2e7f50a" class="outline-2">
+       <h2 class="paragtitle"id="org2e7f50a">Definizione Della Griglia</h2>
+       <div class="outline-text-2" id="text-2">
 	   <p>
 	     Si definisce una griglia che partiziona il piano in \(r\) quadrati, di lato unitario \(\varepsilon\), chiamati celle: \(C_1, \dots
 	     C_r\) i cui vertici sono punti a coordinate intere positive. Per qualsiasi punto \(Q\), vertice di uno dei suddetti quadrati, di
@@ -163,7 +164,7 @@
        </div>
 
        <div id="outline-container-org146f4ca" class="outline-2">
-	 <h2 id="org146f4ca">Scelta dei  Gradienti Pseudo-Casuali</h2>
+	 <h2 class="paragtitle"id="org146f4ca">Scelta dei  Gradienti Pseudo-Casuali</h2>
 	 <div class="outline-text-2" id="text-3">
 	   <p>
 	     Si definisce una funzione \(g : \mathbb{N}^2 \rightarrow \mathbb{R}^2\) che assegna ad ogni intersezione della griglia un vettore gradiente pseudocasuale di
@@ -180,116 +181,125 @@
        </div>
 
        <div id="outline-container-org15ae455" class="outline-2">
-<h2 id="org15ae455">Prodotto Scalare</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-  Fissato un qualunque punto \(P\) di coordinate \((x,y)\) all'interno della griglia, ma non appartenente a nessuna delle rette che la compongono, esisterà un'unica cella \(C_{j}\), che lo contiene, con \(j=1, \dots, r\). \(\forall i : i = 0, \dots, 4\). Si prendono i vettori \(v_{i,j}\) che spostano i quattro vertici della cella in \(P\). Per ciascun vettore \(v_{i,j}\)  si calcola il prodotto scalare tra \(v_{i,j}\) e il vettore costante che ha in comune l'origine con \(v_{i,j}\).
-Per comodità in seguito chiameremo \(A, B, C\) e \(D\) i quattro vertici della cella, come in figura.
-</p>
+	 <h2 class="paragtitle"id="org15ae455">Prodotto Scalare</h2>
+	 <div class="outline-text-2" id="text-4">
+	   <p>
+	     Fissato un qualunque punto \(P\) di coordinate \((x,y)\) all'interno della griglia, ma non appartenente a nessuna delle rette che la compongono, esisterà un'unica cella \(C_{j}\), che lo contiene, con \(j=1, \dots, r\). \(\forall i : i = 0, \dots, 4\). Si prendono i vettori \(v_{i,j}\) che spostano i quattro vertici della cella in \(P\). Per ciascun vettore \(v_{i,j}\)  si calcola il prodotto scalare tra \(v_{i,j}\) e il vettore costante che ha in comune l'origine con \(v_{i,j}\).
+	     Per comodità in seguito chiameremo \(A, B, C\) e \(D\) i quattro vertici della cella, come in figura.
+	   </p>
 
 
-<div class="figure">
-<p><img src="./dotprod.png" alt="dotprod.png" />
-</p>
-</div>
+	   <div class="figure">
+	     <p><img src="./dotprod.png" alt="dotprod.png" />
+	     </p>
+	   </div>
 
-<p>
-Si ottengono così 4 valori, ciascuno associato ad un vertice del quadrato \(C_{j}\) che contiene il punto \(P\).
-</p>
-
-<p>
-\(a = g(A) \cdot (P - A)\) ,
-</p>
-
-<p>
-\(b = g(B) \cdot (P - B)\) ,
-</p>
-
-<p>
-\(c = g(C) \cdot (P - C)\),
-</p>
-
-<p>
-\(d = g(D) \cdot (P - D)\) . 
-</p>
-
-<p>
-Se P appartiene ad una delle rette della griglia, P può appartenere a 2 oppure a 4 celle, se è un vertice della griglia. In  questi due  casi, si decide per convenzione che:
-</p>
-
-<ul class="org-ul">
-<li><b>se P appartiene ad un lato orizzontale comune a due celle</b>: 
-si considera P appartnente alla cella i cui punti C e D hanno coordinata y minore</li>
-<li><b>se P appartiene ad un lato verticale comune a due celle</b>:
-si considera P appartnente alla cella i cui punti A e D hanno coordinata x minore</li>
-<li><b>se P è un vertice della griglia</b>:
-si considera P appartnente alla cella il cui punto D ha entrambe le coordinate x ed y minori</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org4b1fea6" class="outline-2">
-<h2 id="org4b1fea6">Interpolazione</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-Infine, per calcolare il valore della funzione nel punto \((x,y)\) si esegue un'interpolazione. Invece che utilizzare un'interpolazione lineare, la quale non garantirebbe una derivata uguale a 0 negli intorni di 1 e 0, si utilizza un'interpolazione polinomiale utilizzando la funzione
-</p>
-
-<p>
-<!-- <img src="./smoothstep.svg" alt="smoothstep.svg" /> -->
-\(s(x) = 3x^{2} - 2x^{3}\) 
-</p>
-<p>con \(0 < x < 1 \)</p>
-
-<div class="figure">
-<p><img src="./sigmoid.png" alt="sigmoid.png" />
-</p>
-</div>
-
-<p>
-La quale invece soddisfa i requisiti richiesti. Si procede dunque in questo modo:  
-</p>
-<ol class="org-ol">
-<li>Si calcola l'interpolazione tra i valori \(a, b\)</li>
-<li>Si calcola l'interpolazione tra i valori \(c, d\)</li>
-<li>Si interpola ulteriormente tra i valori ottenuti nei due passi precedenti</li>
-</ol>
-
-<!-- <p>
-\(S_{x} = 3(x - x_{A})^{2} - 2(x - x_{A})^{3}\)
-</p>
-
-<p>
-\(S_{y} = 3(y - y_{A})^{2} - 2(y-y_{A})^{3}\)
-</p> -->
-
-<p>
-\(S_{A} = a + s(x-x_{A})(b - a)\)
-</p>
-
-<p>
-\(S_{B} = c + s(x-x_{A})(d - c)\) 
-</p>
-
-<p>
-\(z = S_{A} + s(y-y_{A})(S_{B} - S_{A})\)
-</p>
-
-<p>
-Il punto \(z\) così ottenuto è il valore del rumore di Perlin nelle coordinate \((x,y)\)
-</p>
-
-<p>
-<h1 class='org-ref-bib-h1'>Bibliografia</h1>
-<ul class='org-ref-bib'><li><a id="ebert2014texturing">[ebert2014texturing]</a> <a name="ebert2014texturing"></a>Ebert, Texturing and Modeling: A Procedural Approach, Elsevier Science (2014).</li>
-<li><a id="perlin:1985:IS">[perlin:1985:IS]</a> <a name="perlin:1985:IS"></a>"Ken Perlin", An Image Synthesizer, 287-296, in in: "Computer Graphics, Vol. 19, No. 3.", edited by (1985)</li>
-</ul>
-</p>
-</div>
-</div>
-</div>
-
-
-
+	   <p>
+	     Si ottengono così 4 valori, ciascuno associato ad un vertice del quadrato \(C_{j}\) che contiene il punto \(P\).
+	   </p>
+	   
+	   <p>
+	     \(a = g(A) \cdot (P - A)\) ,
+	   </p>
+	   
+	   <p>
+	     \(b = g(B) \cdot (P - B)\) ,
+	   </p>
+	   
+	   <p>
+	     \(c = g(C) \cdot (P - C)\),
+	   </p>
+	   
+	   <p>
+	     \(d = g(D) \cdot (P - D)\) . 
+	   </p>
+	   
+	   <p>
+	     Se P appartiene ad una delle rette della griglia, P può appartenere a 2 oppure a 4 celle, se è un vertice della griglia. In  questi due  casi, si decide per convenzione che:
+	   </p>
+	   
+	   <ul class="org-ul">
+	     <li><b>se P appartiene ad un lato orizzontale comune a due celle</b>: 
+	       si considera P appartnente alla cella i cui punti C e D hanno coordinata y minore</li>
+	     <li><b>se P appartiene ad un lato verticale comune a due celle</b>:
+	       si considera P appartnente alla cella i cui punti A e D hanno coordinata x minore</li>
+	     <li><b>se P è un vertice della griglia</b>:
+	       si considera P appartnente alla cella il cui punto D ha entrambe le coordinate x ed y minori</li>
+	   </ul>
+	 </div>
+       </div>
+       <div id="outline-container-org4b1fea6" class="outline-2">
+	 <h2 class="paragtitle"id="org4b1fea6">Interpolazione</h2>
+	 <div class="outline-text-2" id="text-5">
+	   <p>
+	     Infine, per calcolare il valore della funzione nel punto \((x,y)\) si esegue un'interpolazione. Invece che utilizzare un'interpolazione lineare, la quale non garantirebbe una derivata uguale a 0 negli intorni di 1 e 0, si utilizza un'interpolazione polinomiale utilizzando la funzione
+	   </p>
+	   
+	   <p>
+	     <!-- <img src="./smoothstep.svg" alt="smoothstep.svg" /> -->
+	     \(s(x) = 3x^{2} - 2x^{3}\) 
+	   </p>
+	   <p>con \(0 < x < 1 \)</p>
+			    
+			    <div class="figure">
+			      <p><img src="./sigmoid.png" alt="sigmoid.png" />
+			      </p>
+			    </div>
+			    
+	   <p>
+	     La quale invece soddisfa i requisiti richiesti. Si procede dunque in questo modo:  
+	   </p>
+	   <ol class="org-ol">
+	     <li>Si calcola l'interpolazione tra i valori \(a, b\)</li>
+	     <li>Si calcola l'interpolazione tra i valori \(c, d\)</li>
+	     <li>Si interpola ulteriormente tra i valori ottenuti nei due passi precedenti</li>
+	   </ol>
+	   
+	   <!-- <p>
+		\(S_{x} = 3(x - x_{A})^{2} - 2(x - x_{A})^{3}\)
+		</p>
+	   
+	   <p>
+	     \(S_{y} = 3(y - y_{A})^{2} - 2(y-y_{A})^{3}\)
+	   </p> -->
+	   
+	   <p>
+	     \(S_{A} = a + s(x-x_{A})(b - a)\)
+	   </p>
+	   
+	   <p>
+	     \(S_{B} = c + s(x-x_{A})(d - c)\) 
+	   </p>
+	   
+	   <p>
+	     \(z = S_{A} + s(y-y_{A})(S_{B} - S_{A})\)
+	   </p>
+	   
+	   <p>
+	     Il punto \(z\) così ottenuto è il valore del rumore di Perlin nelle coordinate \((x,y)\)
+	   </p>
+	   
+	   <p>
+	     
+	   </p>
+	 </div>
+       </div>
+       <div id="outline-container-org4b1fea6" class="outline-2">
+	 <h1 style="margin-top:140px"class='org-ref-bib-h1 paragtitle'>Bibliografia</h1>
+	 <div class="outline-text-2" id="text-5">
+	   <ul class='org-ref-bib'>
+	     
+	     <li><a id="ebert2014texturing">[ebert2014texturing]</a> <a name="ebert2014texturing"></a>Ebert, Texturing and Modeling: A Procedural Approach, Elsevier Science (2014).</li>
+	     <li><a id="perlin:1985:IS">[perlin:1985:IS]</a> <a name="perlin:1985:IS"></a>"Ken Perlin", An Image Synthesizer, 287-296, in in: "Computer Graphics, Vol. 19, No. 3.", edited by (1985)</li>
+	   </ul>
+	 </div>
+	 
+       </div>
+    </div>
+    
+    
+    
+    
 
      </div>
 

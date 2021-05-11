@@ -123,6 +123,26 @@
     font-size: 30px;
 }
 
+p {
+    text-align: left;
+    font-size: 20px;
+}
+
+ol, ul {
+    text-align: left;
+    font-size: 20px;
+}
+
+.paragtitle {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.outline-2 {
+    margin-bottom: 140px;
+}
+
+
 .title  { text-align: center;
              margin-bottom: .2em; }
   .subtitle { text-align: center;
