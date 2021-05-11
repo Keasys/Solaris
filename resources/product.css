@@ -108,3 +108,11 @@
 #mainpanel {
     color: whitesmoke;
 }
+
+#titlepanel {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #212529;
+    radius: 30%;
+    
+}
